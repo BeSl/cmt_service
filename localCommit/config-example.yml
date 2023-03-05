@@ -1,0 +1,10 @@
+project:
+  name: LocalCommit
+  debug: true
+  environment: development
+
+status:
+  port: 5052
+
+jobproject:
+  dir: G:/data1
