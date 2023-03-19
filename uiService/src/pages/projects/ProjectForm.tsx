@@ -12,7 +12,7 @@ import {
     TableFooter,
     TableHead,
     TablePagination,
-    TableRow
+    TableRow,MenuItem
 } from "@material-ui/core";
 import { ToggleButtonGroup } from "@material-ui/lab";
 // id: number;
@@ -29,7 +29,20 @@ const ProjectForm = (props: any) => {
     const [redirect, setRedirect] = useState(false);
     const [page, setPage] = useState(0);
     const perPage = 10;
-
+    const currencies = [
+        {
+          value: '1C',
+          label: '1с Предприятие',
+        },
+        {
+          value: 'Rabbit MQ',
+          label: 'Rabbit MQ',
+        },
+        {
+          value: 'Delhpi',
+          label: 'Орел',
+        },
+      ];
     useEffect(() => {
         if (props.match.params.id) {
             (
@@ -84,8 +97,14 @@ const ProjectForm = (props: any) => {
                     <div className="mb-3">
                         <TextField label="Платформа" variant="outlined"
                             value={platform} onChange={e => setPlatform(e.target.value)}
-                            style={{ height: "30px", width: "150px", marginTop: "30px", marginBottom: "45px" }}
-                        />
+                            style={{ height: "30px", width: "350px", marginTop: "30px", marginBottom: "45px" }}
+                            select >
+                        {currencies.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                              {option.label}
+                            </MenuItem>
+                          ))}
+                         </TextField>
                     </div>
                 </div>
                 <div className="mb-3">
