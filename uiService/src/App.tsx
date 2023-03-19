@@ -12,7 +12,7 @@ import Projects from './pages/projects/Projects';
 import EvLoggs from './pages/LoggerList';
 import CommitsList from './pages/CommitsList';
 import ProjectForm from './pages/projects/ProjectForm';
-
+import ConnectForm from './pages/projects/ConnectForm';
 
 function App() {
     return (
@@ -23,13 +23,12 @@ function App() {
                 <Route path={'/register'} component={Register}/>
                 <Route path={'/profile'} component={Profile}/>
                 <Route path={'/users'} exact component={Users}/>
-                {/* <Route path={'/users/:id/links'} component={Links}/> */}
                 <Route path={'/users/:id'} component={UserProps}/>
                 <Route path={'/projects/:id/edit'} component={ProjectForm}/>
                 <Route path={'/projects'} exact component={Projects}/>
                 <Route path={'/errors'} component={EvLoggs}/>
-                 {/*<Route path={'/products/:id/edit'} component={ProductForm}/> */}
                 <Route path={'/commits'} exact component={CommitsList}/>
+                <Route path={'/connect/:id/edit'} exact component={ConnectForm}/>
             </BrowserRouter>
         </div>
     );

@@ -7,10 +7,8 @@ import {
     Table,
     TableBody,
     TableCell,
-    TableFooter,
     Typography,
     TableHead,
-    TablePagination,
     TableRow,
     Accordion,
     AccordionDetails,
@@ -32,14 +30,6 @@ const Projects = () => {
             }
         )();
     }, []);
-
-    const del = async (id: number) => {
-        if (window.confirm('Are you sure?')) {
-            await axios.delete(`/v1/projects/${id}`);
-
-            setProjects(projects.filter(p => p.id !== id));
-        }
-    }
 
     return (
         <Layout>
@@ -74,12 +64,6 @@ const Projects = () => {
                                                 <TableCell>{item.type}</TableCell>
                                                 <TableCell>{item.comment}</TableCell>
                                                 <ToggleButtonGroup>
-                                        <Button variant="contained" color="primary"
-                                                href={`/projects/${item.id}/edit`} style={{height: "30px", width: "60px"}}
-                                        >Edit</Button>
-                                        <Button variant="contained" color="secondary"
-                                                onClick={() => del(item.id)}  style={{height: "30px", width: "60px"}}
-                                        >Delete</Button>
                                     </ToggleButtonGroup>
                                             </TableRow>
                                         )
