@@ -1,0 +1,22 @@
+project:
+  name: LocalCommit
+  debug: true
+  environment: development
+
+status:
+  port: 8081
+
+database:
+    host: 192.168.1.103
+    port: 5444
+    user: user
+    password: user
+    name: mdb
+    sslmode: disable
+    migrations: migrations
+    driver: pgx
+
+commitserver:
+    host: 192.168.1.103
+    port: 4000
+    api: "api/v1/new"
