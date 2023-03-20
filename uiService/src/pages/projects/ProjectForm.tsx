@@ -21,6 +21,9 @@ import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 
 const blue = {
     50: '#F0F7FF',
@@ -185,92 +188,119 @@ const ProjectForm = (props: any) => {
                     <Tab>окружение проекта</Tab>
                 </TabsList>
                 <TabPanel value={0}>
-
                     <form onSubmit={submit}>
                         <div>
-                            <div className="col-sm-6">
-                                <TextField label="Название проекта" variant="outlined"
-                                    value={name} onChange={e => setName(e.target.value)}
-                                    style={{ height: "30px", width: "300px", marginBottom: "15px" }}
+                            <Box display="grid" gridTemplateColumns="repeat(5, 1fr)" style={{ marginBottom: "15px" }}>
+                            <Box gridColumn="span 2" style={{ marginBottom: "15px" }}>
+                            <TextField label="Название" variant="outlined" fullWidth
+                                value={name} onChange={e => setName(e.target.value)}
+                                // style={{ height: "30px", width: "300px", marginBottom: "15px" }}
                                 />
-                            </div>
-                            <div className="mb-3">
-                                <TextField label="Платформа" variant="outlined"
-                                    value={platform} onChange={e => setPlatform(e.target.value)}
-                                    style={{ height: "30px", width: "350px", marginTop: "30px", marginBottom: "45px" }}
-                                    select >
-                                    {currencies.map((option) => (
-                                        <MenuItem key={option.value} value={option.value}>
-                                            {option.label}
-                                        </MenuItem>
-                                    ))}
-                                </TextField>
-                            </div>
-                        </div>
-                        <div className="mb-3">
-                            <TextField label="Описание" variant="outlined"
-                                value={description} onChange={e => setDescription(e.target.value)} multiline rows={4}
-                            // style={{height: "30px", width: "350px", marginTop: "30px" , marginBottom: "15px"}}
+                            </Box>
+                            <Box gridColumn="span 1" style={{ marginLeft: "15px" }}>
+                            <TextField label="Платформа" variant="outlined" fullWidth
+                                value={platform} onChange={e => setPlatform(e.target.value)}
+                                //style={{ height: "30px", width: "350px", marginTop: "30px", marginBottom: "45px" }}
+                                select >
+                                {currencies.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                            </Box>
+                            <Box gridColumn="span 6">
+                            <TextField label="Описание" variant="outlined" fullWidth
+                            value={description} onChange={e => setDescription(e.target.value)} multiline rows={4}
+                        // style={{height: "30px", width: "350px", marginTop: "30px" , marginBottom: "15px"}}
+                        />
+                            </Box>
+                            <Box gridColumn="span 8">
+                            </Box>
+                        </Box>
+                        {/* <div className="col-sm-6">
+                            <TextField label="Название проекта" variant="outlined"
+                                value={name} onChange={e => setName(e.target.value)}
+                                style={{ height: "30px", width: "300px", marginBottom: "15px" }}
                             />
                         </div>
-                        <Button variant="contained" color="primary" type="submit">Save</Button>
-                    </form>
-
-
-                </TabPanel>
-                <TabPanel value={1}>
-                    <div className="pt-3 pb-2 mb-3 border-bottom">
-                        <Button href={'/connect/new'} variant="contained" color="primary">Add</Button>
+                        <div className="col-sm-6">
+                            <TextField label="Платформа" variant="outlined"
+                                value={platform} onChange={e => setPlatform(e.target.value)}
+                                style={{ height: "30px", width: "350px", marginTop: "30px", marginBottom: "45px" }}
+                                select >
+                                {currencies.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </div> */}
                     </div>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>#</TableCell>
-                                <TableCell>Имя</TableCell>
-                                <TableCell>Путь</TableCell>
-                                <TableCell>Тип</TableCell>
-                                <TableCell>Комментарий</TableCell>
-                            </TableRow>
-                        </TableHead>
-
-                        <TableBody>
-                            {connect_parameters.slice(page * perPage, (page + 1) * perPage).map(item => {
-                                return (
-                                    <TableRow key={item.id}>
-                                        <TableCell>{item.id}</TableCell>
-                                        <TableCell>{item.name}</TableCell>
-                                        <TableCell>{item.path}</TableCell>
-                                        <TableCell>{item.type}</TableCell>
-                                        <TableCell>{item.comment}</TableCell>
-                                        <ToggleButtonGroup>
-                                            <Button variant="contained" color="primary"
-                                                href={`/connect/${item.id}/edit`}
-                                                style={{ height: "30px", width: "60px" }}
-                                            >Edit</Button>
-                                            <Button variant="contained" color="secondary"
-                                                onClick={() => del(item.id)}
-                                                style={{ height: "30px", width: "60px" }}
-                                            >Delete</Button>
-                                        </ToggleButtonGroup>
-                                    </TableRow>
-                                )
-                            })}
-                        </TableBody>
-                        <TableFooter>
-                            <TablePagination
-                                count={connect_parameters.length}
-                                page={page}
-                                onChangePage={(e, newPage) => setPage(newPage)}
-                                rowsPerPage={perPage}
-                                rowsPerPageOptions={[]}
-                            />
-                        </TableFooter>
-                    </Table>
+                    {/* <div className="mb-3">
+                        <TextField label="Описание" variant="outlined"
+                            value={description} onChange={e => setDescription(e.target.value)} multiline rows={4}
+                        // style={{height: "30px", width: "350px", marginTop: "30px" , marginBottom: "15px"}}
+                        />
+                    </div> */}
+                    <Button variant="contained" color="primary" type="submit">Save</Button>
+                </form>
 
 
-                </TabPanel>
-            </TabsUnstyled>
-        </Layout>
+            </TabPanel>
+            <TabPanel value={1}>
+                <div className="pt-3 pb-2 mb-3 border-bottom">
+                    <Button href={'/connect/new'} variant="contained" color="primary">Add</Button>
+                </div>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>#</TableCell>
+                            <TableCell>Имя</TableCell>
+                            <TableCell>Путь</TableCell>
+                            <TableCell>Тип</TableCell>
+                            <TableCell>Комментарий</TableCell>
+                        </TableRow>
+                    </TableHead>
+
+                    <TableBody>
+                        {connect_parameters.slice(page * perPage, (page + 1) * perPage).map(item => {
+                            return (
+                                <TableRow key={item.id}>
+                                    <TableCell>{item.id}</TableCell>
+                                    <TableCell>{item.name}</TableCell>
+                                    <TableCell>{item.path}</TableCell>
+                                    <TableCell>{item.type}</TableCell>
+                                    <TableCell>{item.comment}</TableCell>
+                                    <ToggleButtonGroup>
+                                        <Button variant="contained" color="primary"
+                                            href={`/connect/${item.id}/edit`}
+                                            style={{ height: "30px", width: "60px" }}
+                                        >Edit</Button>
+                                        <Button variant="contained" color="secondary"
+                                            onClick={() => del(item.id)}
+                                            style={{ height: "30px", width: "60px" }}
+                                        >Delete</Button>
+                                    </ToggleButtonGroup>
+                                </TableRow>
+                            )
+                        })}
+                    </TableBody>
+                    <TableFooter>
+                        <TablePagination
+                            count={connect_parameters.length}
+                            page={page}
+                            onChangePage={(e, newPage) => setPage(newPage)}
+                            rowsPerPage={perPage}
+                            rowsPerPageOptions={[]}
+                        />
+                    </TableFooter>
+                </Table>
+
+
+            </TabPanel>
+        </TabsUnstyled>
+        </Layout >
     );
 };
 
