@@ -5,6 +5,7 @@ import axios from "axios";
 import { Redirect } from "react-router-dom";
 import { Project } from "../../models/project";
 import { ConnectParametr } from "../../models/connect-param";
+import { notification } from 'antd'
 import {
     Table,
     TableBody,
@@ -22,8 +23,7 @@ import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
+
 
 const blue = {
     50: '#F0F7FF',
@@ -135,12 +135,13 @@ const ProjectForm = (props: any) => {
             label: 'Орел',
         },
     ];
+    setRedirect(true);    
     useEffect(() => {
         if (props.match.params.id) {
             (
                 async () => {
                     const { data } = await axios.get(`v1/projects/${props.match.params.id}`);
-
+                    
                     setName(data.name);
                     setDescription(data.description);
                     setPlatform(data.platform);
@@ -161,9 +162,11 @@ const ProjectForm = (props: any) => {
         if (props.match.params.id) {
             await axios.put(`v1/projects/${props.match.params.id}`, data);
         } else {
-            await axios.post('v1/projects', data);
+            await axios.post('v1/projects/new', data);
         }
-
+        notification.success({
+            message: 'Данные проекта обновлены',
+        });
         setRedirect(true);
     }
 
@@ -180,7 +183,7 @@ const ProjectForm = (props: any) => {
         <Layout>
             <div className="py-5 text-center">
                 <h2>{name}</h2>
-                <h4 className="lead">Здесь можно отредактировать ключевые характеристики проекта {name} (id:{props.match.params.id})</h4>
+                {/* <h4 className="lead">Здесь можно отредактировать ключевые характеристики проекта {name} (id:{props.match.params.id})</h4> */}
             </div>
             <TabsUnstyled defaultValue={0}>
                 <TabsList>
@@ -218,31 +221,7 @@ const ProjectForm = (props: any) => {
                             <Box gridColumn="span 8">
                             </Box>
                         </Box>
-                        {/* <div className="col-sm-6">
-                            <TextField label="Название проекта" variant="outlined"
-                                value={name} onChange={e => setName(e.target.value)}
-                                style={{ height: "30px", width: "300px", marginBottom: "15px" }}
-                            />
-                        </div>
-                        <div className="col-sm-6">
-                            <TextField label="Платформа" variant="outlined"
-                                value={platform} onChange={e => setPlatform(e.target.value)}
-                                style={{ height: "30px", width: "350px", marginTop: "30px", marginBottom: "45px" }}
-                                select >
-                                {currencies.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                        {option.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                        </div> */}
                     </div>
-                    {/* <div className="mb-3">
-                        <TextField label="Описание" variant="outlined"
-                            value={description} onChange={e => setDescription(e.target.value)} multiline rows={4}
-                        // style={{height: "30px", width: "350px", marginTop: "30px" , marginBottom: "15px"}}
-                        />
-                    </div> */}
                     <Button variant="contained" color="primary" type="submit">Save</Button>
                 </form>
 
