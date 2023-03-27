@@ -4,8 +4,6 @@ import { Button, TextField } from "@material-ui/core";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import { notification } from 'antd'
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 const UserProps = (props: any) => {
     const [first_name, setFirstName] = useState('');
@@ -51,9 +49,9 @@ const UserProps = (props: any) => {
         } else {
             await axios.post('admin/users/new', data);
         }
-        notification.success({
-            message: 'Данные пользователя обновлены',
-        });
+        // notification.success({
+        //     message: 'Данные пользователя обновлены',
+        // });
         setRedirect(true);
     }
 

@@ -43,7 +43,8 @@ func (dst *Distrib) SendCommit(cr *config.CommitRecipient) {
 	var ct models.Commit
 
 	tx := database.DB.Begin()
-	tx.Model(&models.Commit{}).
+	tx.Model(&models.Commit{}).Model(&models.User{}).
+		Preload("ProjectSettings").
 		Preload("DataCommit").
 		Preload("User").
 		Where("complete=false and blocked = false").Order("date_event").First(&ct)

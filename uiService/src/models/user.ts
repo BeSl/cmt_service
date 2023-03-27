@@ -1,3 +1,4 @@
+import {ProjectSetting} from "./projectsettings";
 export class User {
     id!: number;
     first_name!: string;
@@ -6,4 +7,5 @@ export class User {
     extId!: string;
     login1c!:string;
     is_admin!: boolean;
+    project_settings!: ProjectSetting[];
 }

@@ -1,8 +1,8 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {User} from "../models/user";
+import { Link } from 'react-router-dom';
+import { User } from "../models/user";
 import axios from "axios";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 const Nav = (props: { user: User | null }) => {
     return (
@@ -11,17 +11,17 @@ const Nav = (props: { user: User | null }) => {
 
             <ul className="my-2 my-md-0 mr-md-3">
                 <Link to={'/profile'}
-                      className="p-2 text-white text-decoration-none">{props.user?.first_name} {props.user?.last_name}</Link>
+                    className="p-2 text-white text-decoration-none">{props.user?.first_name} {props.user?.last_name}</Link>
                 {props.user?.id == null &&
                     <Link to={'/login'} className="p-2 text-white text-decoration-none"
-                      onClick={async () => await axios.post('logout')}
+                        onClick={async () => await axios.post('logout')}
                     >Авторизация</Link>
-                } 
+                }
                 {props.user?.id != null &&
                     <Link to={'/login'} className="p-2 text-white text-decoration-none"
-                      onClick={async () => await axios.post('logout')}
+                        onClick={async () => await axios.post('logout')}
                     >Sign out</Link>
-                } 
+                }
             </ul>
         </header>
     );

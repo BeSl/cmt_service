@@ -22,8 +22,10 @@ const CommitList = () => {
         (
             async () => {
                 const {data} = await axios.get('/v1/queue');
-
-                setCommits(data);
+                if (data!= null){
+                    setCommits(data);
+                }
+                
             }
         )()
     }, []);

@@ -12,8 +12,11 @@ func ReadUserByID(c *fiber.Ctx) error {
 
 	id, _ := strconv.Atoi(c.Params("id"))
 	var user models.User
-
-	database.DB.Where("id=?", id).Find(&user)
+	//db.Model(&User{}).Preload("CreditCards").Find(&users).Error
+	database.DB.
+		Model(&models.User{}).
+		Preload("ProjectSettings").
+		Where("id=?", id).Find(&user)
 	res := c.JSON(user)
 	return res
 

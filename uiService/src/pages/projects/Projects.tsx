@@ -25,8 +25,9 @@ const Projects = () => {
         (
             async () => {
                 const {data} = await axios.get('/v1/projects');
-
+                if (data!= null){
                 setProjects(data);
+                }
             }
         )();
     }, []);
@@ -34,7 +35,7 @@ const Projects = () => {
     return (
         <Layout>
              <div className="pt-3 pb-2 mb-3 border-bottom">
-                <Button href={'projects/create'} variant="contained" color="primary">Add</Button>
+                <Button href={'projects/new'} variant="contained" color="primary">Создать</Button>
             </div> 
             {projects.map(project => {
                 return (

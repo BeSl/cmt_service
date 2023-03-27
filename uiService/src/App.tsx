@@ -22,13 +22,18 @@ function App() {
                 <Route path={'/login'} component={Login}/>
                 <Route path={'/register'} component={Register}/>
                 <Route path={'/profile'} component={Profile}/>
+                
                 <Route path={'/users'} exact component={Users}/>
                 <Route path={'/users/:id'} component={UserProps}/>
-                <Route path={'/projects/:id/edit'} component={ProjectForm}/>
+                
                 <Route path={'/projects'} exact component={Projects}/>
-                <Route path={'/errors'} component={EvLoggs}/>
+                <Route path={'/projects/:id'} component={ProjectForm}/>
+                <Route path={'/connect/:id'} component={ConnectForm}/>
+                
+                <Route path={'/errors'} exact component={EvLoggs}/>
                 <Route path={'/commits'} exact component={CommitsList}/>
-                <Route path={'/connect/:id/edit'} exact component={ConnectForm}/>
+                
+                
             </BrowserRouter>
         </div>
     );

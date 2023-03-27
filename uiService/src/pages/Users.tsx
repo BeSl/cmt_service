@@ -22,8 +22,9 @@ const Users = () => {
         (
             async () => {
                 const {data} = await axios.get('/admin/users');
-
-                setUsers(data);
+                if (data!= null){
+                    setUsers(data);
+                }
             }
         )()
     }, []);
