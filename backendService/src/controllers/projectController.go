@@ -11,14 +11,14 @@ import (
 func ProjectCreate(c *fiber.Ctx) error {
 	var project models.Project
 
-	if err := c.BodyParser(project); err != nil {
+	if err := c.BodyParser(&project); err != nil {
 		fixLog(err.Error())
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"message": "Invalid request data" + err.Error(),
 		})
 	}
 
-	database.DB.Create(project)
+	database.DB.Create(&project)
 	return c.Status(fiber.StatusCreated).JSON(project)
 }
 

@@ -5,7 +5,6 @@ import Users from "./pages/Users";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import {RedirectToUsers} from "./components/RedirectToUsers";
-import Orders from "./pages/Orders";
 import Profile from "./pages/Profile";
 import UserProps from "./pages/UserProps";
 import Projects from './pages/projects/Projects';
@@ -28,7 +27,7 @@ function App() {
                 
                 <Route path={'/projects'} exact component={Projects}/>
                 <Route path={'/projects/:id'} component={ProjectForm}/>
-                <Route path={'/connect/:id'} component={ConnectForm}/>
+                {/* <Route path={'/connect/:id'} component={ConnectForm}/> */}
                 
                 <Route path={'/errors'} exact component={EvLoggs}/>
                 <Route path={'/commits'} exact component={CommitsList}/>

@@ -7,5 +7,5 @@ export class User {
     extId!: string;
     login1c!:string;
     is_admin!: boolean;
-    project_settings!: ProjectSetting[];
+    // project_settings!: ProjectSetting[];
 }

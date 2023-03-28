@@ -2,9 +2,9 @@ package models
 
 type Project struct {
 	Model
-	Name             string           `json:"name"`
-	Description      string           `json:"description"`
-	IsArchive        bool             `json:"is_archive"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	//IsArchive        bool             `json:"is_archive"`
 	Platform         string           `json:"platform"`
 	ConnectParametrs []ConnectProject `json:"connect_parameters" gorm:"foreignKey:PID"`
 }

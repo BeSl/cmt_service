@@ -1,7 +1,7 @@
 import { Project } from "./project";
 
 export interface ProjectSetting {
-    project: Project;
+    // project: Project;
     uuidUser: string;
     userName: string;
 }
