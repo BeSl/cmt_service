@@ -122,13 +122,14 @@ const ProjectConnecter = (props: any) => {
     const [cnct_path, setCnctPath] = useState('');
     const [cnct_type, setCnctType] = useState('');
     const [cnct_comment, setCnctComment] = useState('');
+    const {connect_parameters1} = props;
+
     useEffect(() => {
-        const {data} = props;
-        if (data != null){
-            setConnectParam(data);
+        if (connect_parameters1 != null){
+            setConnectParam(connect_parameters1);
         }
         
-    }, [])
+    }, [connect_parameters])
     // const handleConnectParamAdd = (e: SyntheticEvent) => {
     //     e.preventDefault();
     //     setConnectParam([
@@ -187,6 +188,7 @@ const ProjectConnecter = (props: any) => {
             })}
 
         </TableBody>
+        
     );
 };
 export default ProjectConnecter;
