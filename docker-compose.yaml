@@ -1,16 +1,20 @@
 version: "3.9"
 services:
   backendcommit:
-    build: .
+    build: backendService
     ports:
       - 8081:8081
-    volumes:
-      - .:/app
+    # volumes:
+    #   - .:/app
     depends_on:
-      - postgres
-
-  postgres:
-    container_name: postgres
+      - postgresback
+  uiservice:
+    build: uiService
+    ports:
+      - 3000:3000
+    
+  postgresback:
+    container_name: postgresback
     image: postgres
     command:
       - "postgres"
@@ -48,10 +52,10 @@ services:
       POSTGRES_PASSWORD: "user"
       PGDATA: "/var/lib/pgsql/data"
     volumes:
-      - ./Database:/docker-entrypoint-initdb.d
-      - .:/var/lib/postgresql/data
+      - ../Database:/docker-entrypoint-initdb.d
+      - ..:/var/lib/postgresql/data
     ports:
-      - "5444:5432"
+      - "5445:5432"
     restart: unless-stopped
     deploy:
       resources:
@@ -61,25 +65,6 @@ services:
     networks:
       - postgres
 
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "adm@pg.com"
-      PGADMIN_DEFAULT_PASSWORD: "admin"
-      PGADMIN_CONFIG_SERVER_MODE: "False"
-    volumes:
-      - ./pgadmin:/var/lib/pgadmin
-    ports:
-      - "5050:80"
-    restart: unless-stopped
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 1G
-    networks:
-      - postgres
 networks:
   postgres:
     driver: bridge
