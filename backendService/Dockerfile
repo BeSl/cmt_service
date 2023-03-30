@@ -1,11 +1,16 @@
-FROM golang:1.19
+FROM golang:1.19-alpine AS builder
 
-WORKDIR /app
-COPY go.mod .
-COPY go.sum .
-RUN go mod download
+WORKDIR backendService
+COPY Makefile Makefile
+RUN make deps-go
+COPY . .
+RUN apk add --no-cache bash
+RUN chown -R node /proc/sys/net/ipv4/ip_unprivileged_port_start
+RUN make build
 
 COPY . .
-RUN echo ls -l
-RUN go build -o hello main.go
-CMD [". /hello"]
+RUN ls -l
+# RUN go build -o back main.go
+RUN go run main.go
+# CMD [". /back"]
+EXPOSE 8081
