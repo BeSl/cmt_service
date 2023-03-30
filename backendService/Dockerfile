@@ -4,7 +4,8 @@ WORKDIR backendService
 COPY Makefile Makefile
 RUN make deps-go
 COPY . .
-RUN apk add --no-cache bash
+RUN apk --no-cache add ca-certificates
+WORKDIR /root/
 RUN chown -R node /proc/sys/net/ipv4/ip_unprivileged_port_start
 RUN make build
 
