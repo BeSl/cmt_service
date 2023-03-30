@@ -1,9 +1,9 @@
 package distributer
 
 import (
-	"back_commit/src/config"
-	"back_commit/src/database"
-	"back_commit/src/models"
+	"backendService/src/config"
+	"backendService/src/database"
+	"backendService/src/models"
 	"bytes"
 	"encoding/json"
 	"fmt"

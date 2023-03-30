@@ -1,4 +1,4 @@
-module back_commit
+module backendService
 
 go 1.19
 

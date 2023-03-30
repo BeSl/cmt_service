@@ -1,17 +1,14 @@
 FROM golang:1.19-alpine AS builder
 
 WORKDIR backendService
-COPY Makefile Makefile
-RUN make deps-go
+COPY backendService/go.mod .
+COPY backendService/go.sum .
+RUN go mod download
+WORKDIR /backendService
 COPY . .
 RUN apk --no-cache add ca-certificates
-WORKDIR /root/
-RUN chown -R node /proc/sys/net/ipv4/ip_unprivileged_port_start
-RUN make build
-
-COPY . .
 RUN ls -l
-# RUN go build -o back main.go
-RUN go run main.go
-# CMD [". /back"]
+
+# RUN go run ./backendService/main.go
+
 EXPOSE 8081

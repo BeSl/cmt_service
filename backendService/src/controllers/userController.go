@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"back_commit/src/database"
-	"back_commit/src/models"
+	"backendService/src/database"
+	"backendService/src/models"
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"

@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"back_commit/src/controllers"
-	"back_commit/src/middlewares"
+	"backendService/src/controllers"
+	"backendService/src/middlewares"
 
 	"github.com/gofiber/fiber/v2"
 )

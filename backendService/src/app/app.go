@@ -1,10 +1,10 @@
 package app
 
 import (
-	"back_commit/src/config"
-	"back_commit/src/database"
-	"back_commit/src/distributer"
-	"back_commit/src/routes"
+	"backendService/src/config"
+	"backendService/src/database"
+	"backendService/src/distributer"
+	"backendService/src/routes"
 	"context"
 	"os"
 	"os/signal"

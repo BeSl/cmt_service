@@ -1,7 +1,7 @@
 package database
 
 import (
-	"back_commit/src/models"
+	"backendService/src/models"
 
 	"github.com/rs/zerolog/log"
 	"gorm.io/driver/postgres"

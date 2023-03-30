@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"back_commit/src/database"
-	"back_commit/src/middlewares"
-	"back_commit/src/models"
+	"backendService/src/database"
+	"backendService/src/middlewares"
+	"backendService/src/models"
 
 	"strings"
 	"time"

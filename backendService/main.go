@@ -1,8 +1,8 @@
 package main
 
 import (
-	"back_commit/src/app"
-	"back_commit/src/config"
+	"backendService/src/app"
+	"backendService/src/config"
 
 	"github.com/rs/zerolog/log"
 )
