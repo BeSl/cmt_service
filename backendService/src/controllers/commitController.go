@@ -11,8 +11,15 @@ func AddNewCommit(c *fiber.Ctx) error {
 	var newCommit models.Commit
 	var user models.User
 	var dtProcess models.DataProccessor
-
+	var fi interface{}
+	err1 := c.BodyParser(&fi)
 	err := c.BodyParser(&newCommit)
+	if err1 != nil {
+		c.Status(fiber.ErrBadRequest.Code)
+		fixLog(err1.Error())
+		return err1
+	}
+
 	if err != nil {
 		c.Status(fiber.ErrBadRequest.Code)
 		fixLog(err.Error())
@@ -21,21 +28,29 @@ func AddNewCommit(c *fiber.Ctx) error {
 
 	tx := database.DB.Begin()
 
-	tx.Where("ext_id = ?", newCommit.User.ExtID).Find(&user)
+	database.DB.Where("ext_id = ?", newCommit.User.ExtID).Find(&user)
 
 	if user.ID != 0 {
 		newCommit.User = user
 	} else {
 		//Сообщение о новом пользователе
+		user = newCommit.User
 		tx.Create(&user)
+		newCommit.User = user
 	}
 
-	tx.Where("ext_id = ?", newCommit.DataCommit.ExtID).Find(&dtProcess)
+	newCommit.Base64Data = newCommit.DataCommit.Base64data
+	newCommit.DateEvent = newCommit.DataCommit.Dateevent
 
-	if user.ID != 0 {
+	database.DB.Where("ext_id = ?", newCommit.DataCommit.ExtID).Find(&dtProcess)
+
+	if dtProcess.ID != 0 {
 		newCommit.DataCommit = dtProcess
 	} else {
+		dtProcess = newCommit.DataCommit
+		// dtProcess.Base64data = ""
 		tx.Create(&dtProcess)
+		newCommit.DataCommit = dtProcess
 	}
 
 	if err := tx.Create(&newCommit).Error; err != nil {

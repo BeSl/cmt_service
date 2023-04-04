@@ -2,33 +2,34 @@ package models
 
 import (
 	"strings"
-	"time"
 
 	"github.com/google/uuid"
 )
 
 type Commit struct {
 	Model
-	DateEvent     time.Time `json:"dateevent"`
-	Base64Data    string    `json:"base64data"`
+	//DateEvent     time.Time `json:"dateevent,omitempty"`
+	DateEvent     string `json:"dateevent,omitempty"`
+	Base64Data    string `json:"base64data"`
 	UserId        uint
-	User          User `json:"author" gorm:"foreignKey:UserId"`
+	User          User `json:"author,omitempty" gorm:"foreignKey:UserId"`
 	DataCommitId  uint
-	DataCommit    DataProccessor `json:"DataProccessor" gorm:"foreignKey:DataCommitId"`
-	CommitMessage string         `json:"textCommit"`
-	Source        string         `json:"source"`
+	DataCommit    DataProccessor `json:"DataProccessor,omitempty" gorm:"foreignKey:DataCommitId"`
+	CommitMessage string         `json:"textCommit,omitempty"`
+	Source        string         `json:"source,omitempty"`
 	BranchName    string
 	Complete      bool
 	Blocked       bool
 }
 
 type CommitQueue struct {
-	Date       time.Time `json:"date"`
-	NameData   string    `json:"nameData"`
-	Author     string    `json:"author"`
-	TextCommit string    `json:"text_commit"`
-	Barnch     string    `json:"branch"`
-	Project    string    `json:"project"`
+	//Date       time.Time `json:"date,omitempty"`
+	Date       string `json:"date,omitempty"`
+	NameData   string `json:"nameData"`
+	Author     string `json:"author"`
+	TextCommit string `json:"text_commit"`
+	Barnch     string `json:"branch"`
+	Project    string `json:"project"`
 }
 
 type SendDataCommit struct {
@@ -78,6 +79,9 @@ func (cm *Commit) BranchOurSource() string {
 
 type DataProccessor struct {
 	Model
-	ExtID uuid.UUID `json:"extID"`
-	Name  string    `json:"name"`
+	ExtID      uuid.UUID `json:"extID"`
+	Name       string    `json:"name"`
+	Dateevent  string    `json:"dateevent"`
+	Base64data string    `json:"base64data"`
+	Type       string    `json:"type"`
 }

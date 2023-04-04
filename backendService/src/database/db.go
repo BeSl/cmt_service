@@ -27,12 +27,12 @@ func Connect(dsn DsnParam) {
 
 func AutoMigrate() {
 	DB.AutoMigrate(
+		models.Logger{},
+		models.User{},
+		models.ProjectSettings{},
+		models.ConnectProject{},
+		models.Project{},
 		models.DataProccessor{},
 		models.Commit{},
-		models.Project{},
-		models.ConnectProject{},
-		models.Logger{},
-		models.ProjectSettings{},
-		models.User{},
 	)
 }

@@ -8,10 +8,10 @@ import (
 type User struct {
 	Model
 	ExtName   string            `json:"name"`
-	ExtID     uuid.UUID         `json:"ext_id" gorm:"primary_key"`
+	ExtID     uuid.UUID         `json:"ext_id" `
 	FirstName string            `json:"first_name"`
 	LastName  string            `json:"last_name"`
-	Email     string            `json:"email" gorm:"unique"`
+	Email     string            `json:"email" `
 	Password  []byte            `json:"-"`
 	Projects  []ProjectSettings `json:"project_settings" gorm:"foreignKey:UserRefer"`
 	IsAdmin   bool              `json:"is_admin"`
@@ -20,10 +20,10 @@ type User struct {
 
 type ProjectSettings struct {
 	Model
-	ExtID     uuid.UUID `json:"ext_id" gorm:"primary_key"`
-	UserRefer uuid.UUID
+	ExtID     uuid.UUID `json:"ext_id"`
+	UserRefer uint
 	ProjectID uint
-	Project   Project   `json:"project" gorm:"foreignKey:ProjectID"`
+	Project   Project   `json:"project" gorm:"foreignKey:ProjectID"` // gorm:"foreignKey:ProjectID"
 	UuidUser  uuid.UUID `json:"uuidUser"`
 	UserName  string    `json:"userName"`
 }

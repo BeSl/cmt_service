@@ -30,7 +30,7 @@ func Setup(app *fiber.App) {
 	//
 
 	jCommit := api.Group("v1")
-	jCommit.Post("upload", controllers.AddNewCommit)
+	jCommit.Post("uploadtoquery", controllers.AddNewCommit)
 	//jCommit.Get("listuser") - список пользователей
 	//jCommit.Get("queuecommit")- очередь коммитов
 	//jCommit.Get("errorscommit")

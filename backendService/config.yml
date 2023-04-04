@@ -4,7 +4,7 @@ project:
   environment: development
 
 status:
-  port: 8081
+  port: 5060
 
 database:
     host: localhost
